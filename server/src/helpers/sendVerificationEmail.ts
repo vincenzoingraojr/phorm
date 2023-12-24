@@ -37,7 +37,7 @@ export const sendVerificationEmail = (
                             Data: "Verify your account",
                         },
                     },
-                    Source: "noreply@phormlabs.com",
+                    Source: "noreply@phormapp.com",
                 };
 
                 ses.sendEmail(params)

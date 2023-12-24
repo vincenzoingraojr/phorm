@@ -31,7 +31,7 @@ const Head: FunctionComponent<HeadProps> = ({
                 content={
                     image
                         ? image
-                        : "https://cdn.phormlabs.com/brand/logo.png"
+                        : "https://cdn.phormapp.com/brand/logo.png"
                 }
             />
             <meta
@@ -39,7 +39,7 @@ const Head: FunctionComponent<HeadProps> = ({
                 content={
                     image
                         ? image
-                        : "https://cdn.phormlabs.com/brand/logo.png"
+                        : "https://cdn.phormapp.com/brand/logo.png"
                 }
             />
         </Helmet>

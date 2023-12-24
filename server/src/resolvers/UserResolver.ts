@@ -289,7 +289,7 @@ export class UserResolver {
                                 console.log(error);
                             } else {
                                 transporter.sendMail({
-                                    from: "Phorm Labs <support@phormlabs.com>",
+                                    from: "Phorm <support@phormapp.com>",
                                     to: email,
                                     subject: "Recover your password",
                                     html: data,
@@ -527,7 +527,7 @@ export class UserResolver {
                             status = "Could not send the email, check your internet connection.";
                         } else {
                             transporter.sendMail({
-                                from: "Phorm Labs <support@phormlabs.com>",
+                                from: "Phorm <support@phormapp.com>",
                                 to: email,
                                 subject: "Verify your new email address",
                                 html: data,
@@ -600,7 +600,7 @@ export class UserResolver {
                             console.log(error);
                         } else {
                             transporter.sendMail({
-                                from: "Phorm Labs <support@phormlabs.com>",
+                                from: "Phorm <support@phormapp.com>",
                                 to: user.email,
                                 subject: "Verify your email address",
                                 html: data,

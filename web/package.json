@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "description": "Phorm front-end",
-    "author": "Vincenzo Ingrao Jr. <vincent@phormlabs.com>",
+    "author": "Vincenzo Ingrao Jr. <vincent@phormapp.com>",
     "license": "CC-BY-NC-ND-1.0",
     "dependencies": {
         "@apollo/client": "^3.5.10",

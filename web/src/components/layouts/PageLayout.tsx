@@ -117,15 +117,15 @@ export const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
             <MainComponent>{children}</MainComponent>
             <Footer>
                 <FooterItem>
-                    &copy; {new Date().getFullYear()} Phorm Labs
+                    &copy; {new Date().getFullYear()} Phorm
                 </FooterItem>
                 <FooterItem>
                     <a
-                        href="https://phormlabs.com"
+                        href="https://phormapp.com"
                         target="_blank"
-                        title="About Phorm Labs"
+                        title="About Phorm"
                         rel="noreferrer"
-                        aria-label="About Phorm Labs"
+                        aria-label="About Phorm"
                     >
                         About
                     </a>

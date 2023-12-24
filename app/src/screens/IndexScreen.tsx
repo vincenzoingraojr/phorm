@@ -39,7 +39,7 @@ const IndexScreen = ({ navigation }: Props) => {
                         </View>
                     </View>
                     <View style={index.footerContainer}>
-                        <Text style={[styles.text, index.footer]}>&copy; {new Date().getFullYear()} Phorm Labs</Text>
+                        <Text style={[styles.text, index.footer]}>&copy; {new Date().getFullYear()} Phorm</Text>
                     </View>
                 </View>
             }
