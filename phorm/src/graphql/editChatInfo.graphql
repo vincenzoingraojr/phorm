@@ -1,0 +1,46 @@
+mutation EditChatInfo(
+    $chatId: String!
+    $title: String!
+) {
+    editChatInfo(
+        chatId: $chatId
+        title: $title
+    ) {
+        status
+        chat {
+            id
+            chatId
+            creatorId
+            creator {
+                id
+                firstName
+                lastName
+                email
+                emailVerified
+                profilePicture
+            }
+            title
+            createdAt
+            updatedAt
+            messagesCount
+            messages {
+                id
+                messageId
+                fromUser
+                isReplyTo
+                type
+                content
+                createdAt
+                updatedAt
+                isEdited
+            }
+            events {
+                id
+                eventType
+                eventMessage
+                fromUser
+                createdAt
+            }
+        }
+    }
+}

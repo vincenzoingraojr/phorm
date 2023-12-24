@@ -1,0 +1,5 @@
+mutation VerifyEmailAddress($token: String!) {
+    verifyEmailAddress(token: $token) {
+        status
+    }
+}

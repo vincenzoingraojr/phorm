@@ -1,0 +1,28 @@
+subscription NewMessageOrEvent(
+    $chatId: String
+    $userId: Int
+) {
+    newMessageOrEvent(
+        chatId: $chatId
+        userId: $userId
+    ) {
+        ... on Message {
+            id
+            messageId
+            fromUser
+            isReplyTo
+            type
+            content
+            createdAt
+            updatedAt
+            isEdited
+        }
+        ... on Event {
+            id
+            eventType
+            eventMessage
+            fromUser
+            createdAt
+        }
+    }
+}
