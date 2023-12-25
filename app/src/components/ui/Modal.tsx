@@ -14,7 +14,7 @@ const ModalComponent: FunctionComponent<ModalComponentProps> = ({ isVisible, chi
 
     return (
         <Modal animationType="slide" transparent={true} visible={isVisible} onDismiss={onClose}>
-            <View style={[globalStyles.modalContent, styles.scrollContainer]}>
+            <View style={[globalStyles.modalContent, styles.contentContainer]}>
                 {children}
             </View>
         </Modal>

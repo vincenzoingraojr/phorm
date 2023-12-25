@@ -11,7 +11,7 @@ export const ScrollableLayout: FunctionComponent<LayoutProps> = ({ content }) =>
     
     return (
         <View style={styles.container}>
-            <ScrollView contentContainerStyle={styles.scrollContainer}>
+            <ScrollView contentContainerStyle={styles.contentContainer}>
                 {content}
             </ScrollView>
         </View>

@@ -6,7 +6,7 @@ const lightTheme = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.white,
     },
-    scrollContainer: {
+    contentContainer: {
         backgroundColor: COLORS.white,
     },
     text: {
@@ -36,7 +36,7 @@ const darkTheme = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.dark,
     },
-    scrollContainer: {
+    contentContainer: {
         backgroundColor: COLORS.dark,
     },
     text: {
