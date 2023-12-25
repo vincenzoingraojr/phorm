@@ -123,7 +123,6 @@ export class Event extends BaseEntity {
     chat: Chat;
     
     @Field(() => String, { nullable: false })
-    @Column({ nullable: false })
+    @CreateDateColumn({ nullable: false })
     createdAt: Date;
 }
-

@@ -1,29 +1,31 @@
 import { Layout } from "../components/Layout";
-import { RouteProp, useRoute } from "@react-navigation/native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { ActivityIndicator, FlatList, Pressable, Text, TextInput, View } from "react-native";
+import { ActivityIndicator, FlatList, Pressable, Text, TextInput, View, useColorScheme } from "react-native";
 import { chatStyles } from "../constants/chatStyles";
 import { greyColorProp, textColorProp, theme } from "../constants/theme";
 import { COLORS } from "../constants/colors";
-import { MessageOrEvent, useMeQuery, useMessagesAndEventsQuery, useNewMessageOrEventSubscription, useSendMessageMutation } from "../generated/graphql";
+import { ChatsDocument, ChatsQuery, MessageOrEvent, useChatsQuery, useDeleteChatMutation, useMeQuery, useMessagesAndEventsQuery, useNewMessageOrEventSubscription, useSendMessageMutation } from "../generated/graphql";
 import Message from "../components/ui/Message";
-import ModalComponent from "../components/ui/Modal";
 import { useEffect, useRef, useState } from "react";
 import { RenderSeparator } from "../components/ui/RenderSeparator";
 import { Ionicons } from "@expo/vector-icons";
 import HeaderButton from "../components/ui/HeaderButton";
+import { useActionSheet } from "@expo/react-native-action-sheet";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 
 type RootStackParamList = {
     Chat: { chatId: string };
+    EditChatInfo: { chatId: string };
     NewChat: undefined;
 };
-  
+
 type ChatRouteProp = RouteProp<RootStackParamList, "Chat">;
 
 type Props = NativeStackScreenProps<RootStackParamList, "Chat">;
 
-const ChatScreen = ({ navigation }: Props) => {
+const ChatScreen = () => {
     const route = useRoute<ChatRouteProp>();
+    const navigation = useNavigation<Props["navigation"]>();
     const { chatId } = route.params;
 
     const styles = theme();
@@ -41,6 +43,7 @@ const ChatScreen = ({ navigation }: Props) => {
     }, [inputText]);
 
     const [sendMessage] = useSendMessageMutation();
+    const [deleteChat] = useDeleteChatMutation();
     const { data: meData } = useMeQuery({ fetchPolicy: "cache-and-network" });
     const { data: chatData, loading, error } = useMessagesAndEventsQuery({ variables: { chatId }, fetchPolicy: "cache-and-network" });
 
@@ -49,6 +52,8 @@ const ChatScreen = ({ navigation }: Props) => {
     const [items, setItems] = useState(chatData?.messagesAndEvents || []);
 
     const flatListRef = useRef<FlatList<MessageOrEvent> | null>(null);
+
+    const { data } = useChatsQuery({ fetchPolicy: "cache-and-network" });
 
     const handleSendMessage = async () => {
         const messageResponse = await sendMessage({
@@ -72,6 +77,10 @@ const ChatScreen = ({ navigation }: Props) => {
         if (flatListRef && flatListRef.current) {
             flatListRef.current.scrollToEnd({ animated: true });
         }
+
+        return () => {
+            setItems([]);
+        }
     }, [chatData]);
 
     useEffect(() => {
@@ -87,9 +96,55 @@ const ChatScreen = ({ navigation }: Props) => {
         }
     }, [newMessageData]);
 
-    const [isVisible, setIsVisible] = useState(false);
-    const onClose = () => {
-        setIsVisible(false);
+    const { showActionSheetWithOptions } = useActionSheet();
+
+    const colorScheme = useColorScheme();
+
+    const onPress = () => {
+        const options = ["Edit chat", "Delete chat", "Cancel"];
+        const destructiveButtonIndex = 1;
+        const cancelButtonIndex = 2;
+
+        showActionSheetWithOptions({
+            options,
+            cancelButtonIndex,
+            destructiveButtonIndex,
+            containerStyle: { backgroundColor: colorScheme === "dark" ? COLORS.dark : COLORS.white },
+            textStyle: { color: colorScheme === "dark" ? COLORS.white : COLORS.black, fontFamily: "Inter_400Regular", fontSize: 18 },
+        }, async (selectedIndex: number | undefined) => {
+            switch (selectedIndex) {
+                case 0:
+                    navigation.navigate("EditChatInfo", { chatId });
+                    
+                    break;
+
+                case destructiveButtonIndex:
+                    await deleteChat({
+                        variables: {
+                            chatId,
+                        },
+                        update: (store, { data: deleteChatData }) => {
+                            if (deleteChatData && deleteChatData.deleteChat && data && data.chats) {
+                                const chatsData = [...data.chats];
+                                const remainingChats = chatsData.filter((chat) => chat.chatId !== chatId);
+
+                                store.writeQuery<ChatsQuery>({
+                                    query: ChatsDocument,
+                                    data: {
+                                        chats: remainingChats,
+                                    },
+                                });
+                            }
+                        },
+                    });
+
+                    navigation.navigate("NewChat");
+                    
+                    break;
+
+                case cancelButtonIndex:
+                    break;
+        }});
     }
 
     useEffect(() => {
@@ -97,7 +152,7 @@ const ChatScreen = ({ navigation }: Props) => {
             title: "Phorm",
             headerRight: () => (
                 <HeaderButton
-                    onPress={() => setIsVisible(true)}
+                    onPress={onPress}
                 >
                     <Ionicons name="ellipsis-vertical-sharp" size={24} color={textColor} />
                 </HeaderButton>
@@ -137,11 +192,6 @@ const ChatScreen = ({ navigation }: Props) => {
                             ItemSeparatorComponent={() => <RenderSeparator height={20} />}
                         />
                     )}
-                    <ModalComponent isVisible={isVisible} onClose={onClose} children={
-                        <Text>
-                            Test
-                        </Text>
-                    } />
                     <View style={chatStyles.compose}>
                         <View style={[chatStyles.textInputContainer, { backgroundColor: greyColor }]}>
                             <TextInput

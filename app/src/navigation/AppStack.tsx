@@ -1,11 +1,11 @@
 import NewChatScreen from "../screens/NewChatScreen";
-import { textColorProp, theme } from "../constants/theme";
+import { theme } from "../constants/theme";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import DrawerContent from "./DrawerContent";
 import SettingsScreen from "../screens/SettingsScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import ChatScreen from "../screens/ChatScreen";
 import EditChatInfoScreen from "../screens/EditChatInfoScreen";
+import ChatScreen from "../screens/ChatScreen";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -72,9 +72,15 @@ const AppStack = () => {
                     title: "Settings",
                 }}
             />
-            <Stack.Group screenOptions={{ presentation: "modal", animation: "slide_from_bottom" }}>
-                <Stack.Screen name="EditChatInfo" component={EditChatInfoScreen} initialParams={{ chatId: undefined }} />
-            </Stack.Group>
+            <Stack.Screen 
+                name="EditChatInfo"
+                component={EditChatInfoScreen} 
+                options={{
+                    headerShown: true,
+                    title: "Edit title",
+                }}
+                initialParams={{ chatId: undefined }}
+            />
         </Stack.Navigator>
     );
 }

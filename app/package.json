@@ -16,6 +16,7 @@
     "dependencies": {
         "@apollo/client": "^3.5.10",
         "@expo-google-fonts/inter": "^0.2.3",
+        "@expo/react-native-action-sheet": "^4.0.1",
         "@expo/webpack-config": "^18.0.1",
         "@react-navigation/drawer": "^6.6.6",
         "@react-navigation/native": "^6.1.7",

@@ -55,6 +55,10 @@ export const AuthProvider: FunctionComponent<AuthProvideProps> = ({ children }) 
         };
 
         handleToken();
+
+        return () => {
+            handleToken();
+        }
     }, []);
 
     const login = async (accessToken: string) => {

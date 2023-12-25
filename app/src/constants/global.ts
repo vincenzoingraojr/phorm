@@ -35,11 +35,4 @@ export const globalStyles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-    modalContent: {
-        width: "100%",
-        borderTopRightRadius: 6,
-        borderTopLeftRadius: 6,
-        position: "absolute",
-        bottom: 0,
-    },
 });

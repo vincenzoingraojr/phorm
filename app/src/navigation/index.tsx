@@ -6,6 +6,7 @@ import { COLORS } from "../constants/colors";
 import { theme } from "../constants/theme";
 import { RootSiblingParent } from "react-native-root-siblings";
 import { useAuth } from "./AuthContext";
+import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 
 function Navigation() {
     const { loading, isAuth } = useAuth();
@@ -22,9 +23,11 @@ function Navigation() {
 
     return (
         <RootSiblingParent>
-            <NavigationContainer>
-                {isAuth ? <AppStack /> : <AuthStack />}
-            </NavigationContainer>
+            <ActionSheetProvider useCustomActionSheet={true}>
+                <NavigationContainer>
+                    {isAuth ? <AppStack /> : <AuthStack />}
+                </NavigationContainer>
+            </ActionSheetProvider>
         </RootSiblingParent>
     );
 }
