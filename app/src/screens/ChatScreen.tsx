@@ -1,5 +1,5 @@
 import { Layout } from "../components/Layout";
-import { ActivityIndicator, FlatList, Pressable, Text, TextInput, View, useColorScheme } from "react-native";
+import { ActivityIndicator, ColorSchemeName, FlatList, Pressable, Text, TextInput, View, useColorScheme } from "react-native";
 import { chatStyles } from "../constants/chatStyles";
 import { greyColorProp, textColorProp, theme } from "../constants/theme";
 import { COLORS } from "../constants/colors";
@@ -12,6 +12,7 @@ import HeaderButton from "../components/ui/HeaderButton";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import Event from "../components/ui/Event";
 
 type RootStackParamList = {
     Chat: { chatId: string };
@@ -55,6 +56,12 @@ const ChatScreen = () => {
 
     const { data } = useChatsQuery({ fetchPolicy: "cache-and-network" });
 
+    useEffect(() => {
+        if (!loading && !chatData) {
+            navigation.navigate("NewChat");
+        }
+    }, [loading, chatData]);
+
     const handleSendMessage = async () => {
         const messageResponse = await sendMessage({
             variables: {
@@ -74,10 +81,6 @@ const ChatScreen = () => {
             setItems(chatData.messagesAndEvents);
         }
 
-        if (flatListRef && flatListRef.current) {
-            flatListRef.current.scrollToEnd({ animated: true });
-        }
-
         return () => {
             setItems([]);
         }
@@ -85,14 +88,10 @@ const ChatScreen = () => {
 
     useEffect(() => {
         if (newMessageData && newMessageData.newMessageOrEvent) {
-            setItems((previousData) => [
+            setItems((previousData: any) => [
                 ...previousData,
                 newMessageData.newMessageOrEvent,
             ]);
-        }
-
-        if (flatListRef && flatListRef.current) {
-            flatListRef.current.scrollToEnd({ animated: true });
         }
     }, [newMessageData]);
 
@@ -100,7 +99,7 @@ const ChatScreen = () => {
 
     const colorScheme = useColorScheme();
 
-    const onPress = () => {
+    const onPress = (chatId: string, colorScheme: ColorSchemeName) => {
         const options = ["Edit chat", "Delete chat", "Cancel"];
         const destructiveButtonIndex = 1;
         const cancelButtonIndex = 2;
@@ -109,8 +108,14 @@ const ChatScreen = () => {
             options,
             cancelButtonIndex,
             destructiveButtonIndex,
-            containerStyle: { backgroundColor: colorScheme === "dark" ? COLORS.dark : COLORS.white },
-            textStyle: { color: colorScheme === "dark" ? COLORS.white : COLORS.black, fontFamily: "Inter_400Regular", fontSize: 18 },
+            containerStyle: {
+                backgroundColor: colorScheme === "dark" ? COLORS.dark : COLORS.white,
+            },
+            textStyle: {
+                color: colorScheme === "dark" ? COLORS.white : COLORS.black, 
+                fontFamily: "Inter_400Regular", 
+                fontSize: 18,
+            },
         }, async (selectedIndex: number | undefined) => {
             switch (selectedIndex) {
                 case 0:
@@ -152,13 +157,14 @@ const ChatScreen = () => {
             title: "Phorm",
             headerRight: () => (
                 <HeaderButton
-                    onPress={onPress}
+                    onPress={() => onPress(chatId, colorScheme)}
+                    key={chatId}
                 >
                     <Ionicons name="ellipsis-vertical-sharp" size={24} color={textColor} />
                 </HeaderButton>
             )
         });
-    }, [navigation]);
+    }, [navigation, chatId, colorScheme, textColor]);
 
     return (
         <Layout 
@@ -177,7 +183,7 @@ const ChatScreen = () => {
                                     {item.__typename === "Message" ? (
                                         <Message message={item} />
                                     ) : (item.__typename === "Event" && (
-                                        <Text style={styles.text}>{item.eventMessage}</Text>
+                                        <Event event={item} />
                                     ))}
                                 </>
                             )}
@@ -190,6 +196,9 @@ const ChatScreen = () => {
                             }
                             style={[chatStyles.main, chatStyles.feed]}
                             ItemSeparatorComponent={() => <RenderSeparator height={20} />}
+                            onContentSizeChange={() => {
+                                flatListRef?.current?.scrollToEnd({ animated: true });
+                            }}
                         />
                     )}
                     <View style={chatStyles.compose}>
