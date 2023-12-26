@@ -3,7 +3,7 @@ import { TokenRefreshLink } from "apollo-link-token-refresh";
 import { REACT_APP_SERVER_ORIGIN, REACT_APP_WS_SERVER_ORIGIN } from "@env";
 import { getToken, setToken } from "./token";
 import jwtDecode, { JwtPayload } from "jwt-decode";
-import { RetryLink } from '@apollo/client/link/retry';
+import { RetryLink } from "@apollo/client/link/retry";
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { createClient } from "graphql-ws";
 import { getMainDefinition } from "@apollo/client/utilities";
@@ -12,6 +12,15 @@ import { onError } from "apollo-link-error";
 const cache = new InMemoryCache({
     typePolicies: {
         Query: {
+            fields: {
+                chats: {
+                    merge: (_existing = [], incoming) => {
+                        return incoming;
+                    },
+                },
+            },
+        },
+        User: {
             fields: {
                 chats: {
                     merge: (_existing = [], incoming) => {
@@ -50,8 +59,17 @@ const refreshLink = new TokenRefreshLink({
             credentials: "include",
         });
     },
-    handleFetch: (accessToken: string) => {
-        setToken(accessToken);
+    handleResponse:
+        (_: any, accessTokenField: string) =>
+        async (response: Response) => {
+            const result = await response.json();
+
+            return {
+                [accessTokenField]: result[accessTokenField],
+            };
+        },
+    handleFetch: async (accessToken: string) => {
+        await setToken(accessToken);
     },
     handleError: (error: any) => {
         console.error(error);
@@ -142,10 +160,10 @@ const link = retryLink.split(
         );
     },
     wsLink,
-    ApolloLink.from([refreshLink, authContextLink, errorLink, httpLink])
+    httpLink,
 );
 
 export const client = new ApolloClient({
-    link,
+    link: ApolloLink.from([refreshLink, errorLink, authContextLink, link]),
     cache,
 });

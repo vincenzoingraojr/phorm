@@ -60,7 +60,7 @@ const ChatScreen = () => {
         if (!loading && !chatData) {
             navigation.navigate("NewChat");
         }
-    }, [loading, chatData]);
+    }, [navigation, loading, chatData]);
 
     const handleSendMessage = async () => {
         const messageResponse = await sendMessage({
