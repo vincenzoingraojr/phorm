@@ -30,31 +30,21 @@ export const AuthProvider: FunctionComponent<AuthProvideProps> = ({ children }) 
     const [isAuth, setIsAuth] = useState(false);
 
     useEffect(() => {
-        const handleToken = async () => {
-            const token = await getToken();
+        fetch(REACT_APP_SERVER_ORIGIN, {
+            method: "POST",
+            credentials: "include",
+        }).then(async (x) => {
+            const { accessToken } = await x.json();
+            await setToken(accessToken);
 
-            if (token && token !== "") {
+            if (accessToken && accessToken !== "") {
                 setIsAuth(true);
             } else {
-                fetch(REACT_APP_SERVER_ORIGIN, {
-                    method: "POST",
-                    credentials: "include",
-                }).then(async (x) => {
-                    const { accessToken } = await x.json();
-                    await setToken(accessToken);
-
-                    if (accessToken && accessToken !== "") {
-                        setIsAuth(true);
-                    } else {
-                        setIsAuth(false);
-                    }
-                });
+                setIsAuth(false);
             }
+        });
 
-            setLoading(false);
-        };
-
-        handleToken();
+        setLoading(false);
     }, []);
 
     const login = async (accessToken: string) => {
