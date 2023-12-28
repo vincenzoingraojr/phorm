@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, FunctionComponent, ReactNode } from "react";
-import { getToken, setToken } from "../utils/token";
-import { REACT_APP_SERVER_ORIGIN } from "@env";
+import { setToken } from "../utils/token";
+import axiosInstance from "../utils/axios";
 
 interface AuthProvideProps {
     children: ReactNode;
@@ -30,11 +30,9 @@ export const AuthProvider: FunctionComponent<AuthProvideProps> = ({ children }) 
     const [isAuth, setIsAuth] = useState(false);
 
     useEffect(() => {
-        fetch(REACT_APP_SERVER_ORIGIN, {
-            method: "POST",
-            credentials: "include",
-        }).then(async (x) => {
-            const { accessToken } = await x.json();
+        axiosInstance.post("/").then(async (response) => {
+            const { accessToken } = await response.data;
+            console.log(accessToken);
             await setToken(accessToken);
 
             if (accessToken && accessToken !== "") {

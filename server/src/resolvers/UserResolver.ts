@@ -21,6 +21,7 @@ import ejs from "ejs";
 import path from "path";
 import { FieldError } from "./common";
 import { isAuth } from "../middleware/isAuth";
+import { Chat } from "src/entities/Chat";
 
 @ObjectType()
 export class UserResponse {
@@ -709,5 +710,26 @@ export class UserResolver {
             status,
             errors,
         };
+    }
+
+    @Mutation(() => Boolean)
+    @UseMiddleware(isAuth)
+    async deleteAccount(
+        @Ctx() { payload }: MyContext
+    ) {
+        if (!payload) {
+            return false;
+        }
+        
+        const me = await User.findOne({ where: { id: payload.id } });
+
+        if (!me) {
+            return false;
+        } else {
+            await Chat.delete({ creator: me });
+            await User.delete({ id: payload.id });
+        
+            return true;
+        }
     }
 }
