@@ -32,7 +32,6 @@ export const AuthProvider: FunctionComponent<AuthProvideProps> = ({ children }) 
     useEffect(() => {
         axiosInstance.post("/").then(async (response) => {
             const { accessToken } = await response.data;
-            console.log(accessToken);
             await setToken(accessToken);
 
             if (accessToken && accessToken !== "") {
