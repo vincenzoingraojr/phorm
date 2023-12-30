@@ -21,7 +21,7 @@ import ejs from "ejs";
 import path from "path";
 import { FieldError } from "./common";
 import { isAuth } from "../middleware/isAuth";
-import { Chat } from "src/entities/Chat";
+import { Chat } from "../entities/Chat";
 
 @ObjectType()
 export class UserResponse {
