@@ -1,8 +1,8 @@
 import { Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useLogoutMutation, useMeQuery } from "../generated/graphql";
-import { textColorProp, theme } from "../constants/theme";
-import { ScrollableLayout } from "../components/ScrollableLayout";
-import { useAuth } from "../navigation/AuthContext";
+import { useLogoutMutation, useMeQuery } from "../../generated/graphql";
+import { textColorProp, theme } from "../../constants/theme";
+import { ScrollableLayout } from "../../components/ScrollableLayout";
+import { useAuth } from "../../navigation/AuthContext";
 import { useEffect, useState } from "react";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";

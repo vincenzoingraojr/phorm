@@ -1,13 +1,13 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { ScrollableLayout } from "../components/ScrollableLayout";
+import { ScrollableLayout } from "../../components/ScrollableLayout";
 import { View } from "react-native";
-import { globalStyles } from "../constants/global";
-import Input from "../components/ui/Input";
-import Button from "../components/ui/Button";
+import { globalStyles } from "../../constants/global";
+import Input from "../../components/ui/Input";
+import Button from "../../components/ui/Button";
 import { useEffect, useState } from "react";
-import { ChatsDocument, ChatsQuery, useChatsQuery, useEditChatInfoMutation, useFindChatQuery } from "../generated/graphql";
+import { ChatsDocument, ChatsQuery, useChatsQuery, useEditChatInfoMutation, useFindChatQuery } from "../../generated/graphql";
 import Toast from "react-native-root-toast";
-import { toastProps } from "../constants/toast";
+import { toastProps } from "../../constants/toast";
 
 type RootStackParamList = {
     EditChatInfo: { chatId: string };

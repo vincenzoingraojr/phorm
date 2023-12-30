@@ -1,18 +1,18 @@
-import { Layout } from "../components/Layout";
+import { Layout } from "../../components/Layout";
 import { ActivityIndicator, ColorSchemeName, FlatList, Pressable, Text, TextInput, View, useColorScheme } from "react-native";
-import { chatStyles } from "../constants/chatStyles";
-import { greyColorProp, textColorProp, theme } from "../constants/theme";
-import { COLORS } from "../constants/colors";
-import { ChatsDocument, ChatsQuery, MessageOrEvent, useChatsQuery, useDeleteChatMutation, useMeQuery, useMessagesAndEventsQuery, useNewMessageOrEventSubscription, useSendMessageMutation } from "../generated/graphql";
-import Message from "../components/ui/Message";
+import { chatStyles } from "../../constants/chatStyles";
+import { greyColorProp, textColorProp, theme } from "../../constants/theme";
+import { COLORS } from "../../constants/colors";
+import { ChatsDocument, ChatsQuery, MessageOrEvent, useChatsQuery, useDeleteChatMutation, useMeQuery, useMessagesAndEventsQuery, useNewMessageOrEventSubscription, useSendMessageMutation } from "../../generated/graphql";
+import Message from "../../components/ui/Message";
 import { useEffect, useRef, useState } from "react";
-import { RenderSeparator } from "../components/ui/RenderSeparator";
+import { RenderSeparator } from "../../components/ui/RenderSeparator";
 import { Ionicons } from "@expo/vector-icons";
-import HeaderButton from "../components/ui/HeaderButton";
+import HeaderButton from "../../components/ui/HeaderButton";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import Event from "../components/ui/Event";
+import Event from "../../components/ui/Event";
 
 type RootStackParamList = {
     Chat: { chatId: string };

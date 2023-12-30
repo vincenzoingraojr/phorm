@@ -2,10 +2,10 @@ import NewChatScreen from "../screens/NewChatScreen";
 import { theme } from "../constants/theme";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import DrawerContent from "./DrawerContent";
-import SettingsScreen from "../screens/SettingsScreen";
+import SettingsScreen from "../screens/settings/SettingsScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import EditChatInfoScreen from "../screens/EditChatInfoScreen";
-import ChatScreen from "../screens/ChatScreen";
+import EditChatInfoScreen from "../screens/chat/EditChatInfoScreen";
+import ChatScreen from "../screens/chat/ChatScreen";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
