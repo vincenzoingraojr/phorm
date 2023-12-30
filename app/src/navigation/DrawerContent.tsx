@@ -53,7 +53,7 @@ const DrawerContent: FunctionComponent<DrawerContentComponentProps> = (props) =>
                     style={[drawerStyles.drawerButton, drawerStyles.drawerBox]}
                     onPress={() => props.navigation.navigate("Collection")}    
                 >
-                    <Ionicons name="information-circle-outline" size={28} color={textColor} />
+                    <Ionicons name="book-outline" size={28} color={textColor} />
                     <Text style={styles.text}>Collection</Text>
                 </TouchableOpacity>
                 <FlatList
