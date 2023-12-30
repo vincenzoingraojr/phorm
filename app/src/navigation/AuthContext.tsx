@@ -39,9 +39,9 @@ export const AuthProvider: FunctionComponent<AuthProvideProps> = ({ children }) 
             } else {
                 setIsAuth(false);
             }
-        });
 
-        setLoading(false);
+            setLoading(false);
+        });
     }, []);
 
     const login = async (accessToken: string) => {

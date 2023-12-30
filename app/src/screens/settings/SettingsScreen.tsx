@@ -15,13 +15,13 @@ const SettingsScreen = () => {
     const [logoutMutation, { client }] = useLogoutMutation();
     const { logout } = useAuth();
 
-    const [imageUrl, setImageUrl] = useState<string>(require("../images/profile-picture.png"));
+    const [imageUrl, setImageUrl] = useState<string>(require("../../images/profile-picture.png"));
 
     useEffect(() => {
         if (data && data.me && data.me.profilePicture) {
             setImageUrl(data.me.profilePicture);
         } else {
-            setImageUrl(require("../images/profile-picture.png"));
+            setImageUrl(require("../../images/profile-picture.png"));
         }
     }, [data]);
 

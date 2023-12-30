@@ -1,5 +1,5 @@
 import { Layout } from "../../components/Layout";
-import { ActivityIndicator, ColorSchemeName, FlatList, Pressable, Text, TextInput, View, useColorScheme } from "react-native";
+import { ActivityIndicator, ColorSchemeName, FlatList, Pressable, TextInput, View, useColorScheme } from "react-native";
 import { chatStyles } from "../../constants/chatStyles";
 import { greyColorProp, textColorProp, theme } from "../../constants/theme";
 import { COLORS } from "../../constants/colors";
