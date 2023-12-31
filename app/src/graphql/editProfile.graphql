@@ -1,0 +1,25 @@
+mutation EditProfile(
+    $firstName: String!,
+    $lastName: String!,
+    $profilePicture: String!,
+) {
+    editProfile(
+        firstName: $firstName,
+        lastName: $lastName,
+        profilePicture: $profilePicture,
+    ) {
+        user {
+            id
+            firstName
+            lastName
+            email
+            emailVerified
+            profilePicture
+        }
+        errors {
+            field
+            message
+        }
+        status
+    }
+}

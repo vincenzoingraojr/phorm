@@ -21,7 +21,7 @@ import ejs from "ejs";
 import path from "path";
 import { FieldError } from "./common";
 import { isAuth } from "../middleware/isAuth";
-import { Chat } from "../entities/Chat";
+import { Chat, Event, Message } from "../entities/Chat";
 
 @ObjectType()
 export class UserResponse {
@@ -726,10 +726,17 @@ export class UserResolver {
         if (!me) {
             return false;
         } else {
-            await Chat.delete({ creator: me });
-            await User.delete({ id: payload.id });
-        
-            return true;
+            try {
+                await Message.delete({ chat: { creator: me } });
+                await Event.delete({ chat: { creator: me } });
+                await Chat.delete({ creator: me });
+                await User.delete({ id: payload.id });
+            
+                return true;
+            } catch (error) {
+                console.error(error);
+                return false;
+            }
         }
     }
 }

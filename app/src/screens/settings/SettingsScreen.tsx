@@ -6,8 +6,20 @@ import { useAuth } from "../../navigation/AuthContext";
 import { useEffect, useState } from "react";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { COLORS } from "../../constants/colors";
 
-const SettingsScreen = () => {
+type RootStackParamList = {
+    Settings: any | undefined;
+    ManageAccountInfo: undefined;
+    EditEmailAddress: undefined;
+    ChangePassword: undefined;
+    DeleteData: undefined;
+};
+
+type Props = NativeStackScreenProps<RootStackParamList, "Settings">;
+
+const SettingsScreen = ({ navigation }: Props) => {
     const { data } = useMeQuery({ fetchPolicy: "cache-and-network" });
     const styles = theme();
     const textColor = textColorProp();
@@ -18,7 +30,7 @@ const SettingsScreen = () => {
     const [imageUrl, setImageUrl] = useState<string>(require("../../images/profile-picture.png"));
 
     useEffect(() => {
-        if (data && data.me && data.me.profilePicture) {
+        if (data && data.me && data.me.profilePicture && data.me.profilePicture !== "") {
             setImageUrl(data.me.profilePicture);
         } else {
             setImageUrl(require("../../images/profile-picture.png"));
@@ -42,13 +54,13 @@ const SettingsScreen = () => {
                             <Text style={[styles.text, settingsStyles.settingsBlockTitle]}>Account</Text>
                             <View style={settingsStyles.settingsBlockContent}>
                                 <TouchableOpacity style={settingsStyles.settingsButton} onPress={() => { 
-                                    
+                                    navigation.navigate("ManageAccountInfo");
                                 }}>
                                     <Ionicons name="information-circle-outline" size={28} color={textColor} />
                                     <Text style={styles.text}>Manage account info</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={settingsStyles.settingsButton} onPress={() => { 
-                                    
+                                    navigation.navigate("EditEmailAddress");
                                 }}>
                                     <Ionicons name="at-sharp" size={28} color={textColor} />
                                     <View style={settingsStyles.settingsButtonContent}>
@@ -57,10 +69,16 @@ const SettingsScreen = () => {
                                     </View>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={settingsStyles.settingsButton} onPress={() => { 
-                                    
+                                    navigation.navigate("ChangePassword");
                                 }}>
                                     <Ionicons name="lock-closed-outline" size={28} color={textColor} />
                                     <Text style={styles.text}>Change your password</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={settingsStyles.settingsButton} onPress={() => { 
+                                    navigation.navigate("DeleteData");
+                                }}>
+                                    <Ionicons name="trash-outline" size={28} color={textColor} />
+                                    <Text style={styles.text}>Delete your data</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -97,7 +115,7 @@ const SettingsScreen = () => {
                                     
                                     await logout();
                                 }}>
-                                    <Ionicons name="log-out-outline" size={28} color={"red"} />
+                                    <Ionicons name="log-out-outline" size={28} color={COLORS.red} />
                                     <Text style={[styles.text, settingsStyles.logOutText]}>Log out</Text>
                                 </TouchableOpacity>
                             </View>
@@ -140,13 +158,12 @@ const settingsStyles = StyleSheet.create({
     },
     settingsButtonContent: {
         flexDirection: "column",
-        gap: 2,
     },
     settingsButtonText: {
         fontSize: 16,
     },
     logOutText: {
-        color: "red",
+        color: COLORS.red,
     },
     settingsBlock: {
         flexDirection: "column",

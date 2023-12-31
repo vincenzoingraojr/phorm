@@ -6,6 +6,10 @@ import SettingsScreen from "../screens/settings/SettingsScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import EditChatInfoScreen from "../screens/chat/EditChatInfoScreen";
 import ChatScreen from "../screens/chat/ChatScreen";
+import ManageAccountInfoScreen from "../screens/settings/ManageAccountInfoScreen";
+import EditEmailAddressScreen from "../screens/settings/EditEmailAddressScreen";
+import ChangePasswordScreen from "../screens/settings/ChangePasswordScreen";
+import DeleteDataScreen from "../screens/settings/DeleteData";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -80,6 +84,38 @@ const AppStack = () => {
                     title: "Edit title",
                 }}
                 initialParams={{ chatId: undefined }}
+            />
+            <Stack.Screen 
+                name="ManageAccountInfo"
+                component={ManageAccountInfoScreen} 
+                options={{
+                    headerShown: true,
+                    title: "Manage account info",
+                }}
+            />
+            <Stack.Screen 
+                name="EditEmailAddress"
+                component={EditEmailAddressScreen} 
+                options={{
+                    headerShown: true,
+                    title: "Edit email address",
+                }}
+            />
+            <Stack.Screen 
+                name="ChangePassword"
+                component={ChangePasswordScreen} 
+                options={{
+                    headerShown: true,
+                    title: "Change your password",
+                }}
+            />
+            <Stack.Screen 
+                name="DeleteData"
+                component={DeleteDataScreen} 
+                options={{
+                    headerShown: true,
+                    title: "Delete your data",
+                }}
             />
         </Stack.Navigator>
     );

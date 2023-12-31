@@ -81,7 +81,7 @@ const inputStyles = StyleSheet.create({
     },
     error: {
         fontSize: 16,
-        color: "red",
+        color: COLORS.red,
     },
     inputBox: {
         flex: 1,

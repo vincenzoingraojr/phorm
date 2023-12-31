@@ -8,7 +8,6 @@ import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { createClient } from "graphql-ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { onError } from "apollo-link-error";
-import axiosInstance from "./axios";
 
 const cache = new InMemoryCache({
     typePolicies: {
@@ -54,18 +53,11 @@ const refreshLink = new TokenRefreshLink({
             return false;
         }
     },
-    fetchAccessToken: async () => {
-        try {
-            const response = await axiosInstance.post("/");
-        
-            if (response.status === 200) {
-                return response.data;
-            }
-        } catch (error) {
-            console.error(error);
-
-            return null;
-        }
+    fetchAccessToken: () => {
+        return fetch(REACT_APP_SERVER_ORIGIN, {
+            method: "POST",
+            credentials: "include",
+        });
     },
     handleResponse:
         (_: any, accessTokenField: string) =>

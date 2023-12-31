@@ -15,6 +15,9 @@ export const globalStyles = StyleSheet.create({
     top24: {
         marginTop: 24,
     },
+    bottom24: {
+        marginBottom: 24,
+    },
     link: {
         color: COLORS.orange,
     },
@@ -34,5 +37,8 @@ export const globalStyles = StyleSheet.create({
         borderRadius: 20,
         alignItems: "center",
         justifyContent: "center",
+    },
+    boldText: {
+        fontFamily: "Inter_700Bold",
     },
 });
