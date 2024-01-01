@@ -7,6 +7,7 @@
     "license": "CC-BY-NC-ND-1.0",
     "scripts": {
         "start": "expo start",
+        "dev": "expo start -c",
         "android": "expo start --android",
         "ios": "expo start --ios",
         "web": "expo start --web",
