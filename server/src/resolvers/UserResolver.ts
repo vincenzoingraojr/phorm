@@ -21,7 +21,7 @@ import ejs from "ejs";
 import path from "path";
 import { FieldError } from "./common";
 import { isAuth } from "../middleware/isAuth";
-import { Chat, Event, Message } from "../entities/Chat";
+import axios from "axios";
 
 @ObjectType()
 export class UserResponse {
@@ -721,16 +721,21 @@ export class UserResolver {
             return false;
         }
         
-        const me = await User.findOne({ where: { id: payload.id } });
+        const me = await User.findOne({ where: { id: payload.id }, relations: ["chats"] });
 
         if (!me) {
             return false;
         } else {
-            try {
-                await Message.delete({ chat: { creator: me } });
-                await Event.delete({ chat: { creator: me } });
-                await Chat.delete({ creator: me });
-                await User.delete({ id: payload.id });
+            try {                
+                await User.remove(me).then(async () => {
+                    if (me.profilePicture && me.profilePicture !== "") {
+                        const profilePictureName = me.profilePicture.replace(
+                            "https://cdn.phormapp.com/",
+                            "",
+                        );
+                        await axios.delete(`${process.env.STORAGE_LINK}/${profilePictureName}`);
+                    }
+                });
             
                 return true;
             } catch (error) {

@@ -76,9 +76,7 @@ const ManageAccountInfoScreen = () => {
             existingProfilePictureName =
                 data?.me?.profilePicture?.replace(
                     `https://cdn.phormapp.com/${
-                        process
-                            .env
-                            .REACT_APP_ENV ===
+                        REACT_APP_ENV ===
                         "development"
                             ? "local-users"
                             : "users"
@@ -204,9 +202,7 @@ const ManageAccountInfoScreen = () => {
                             "") ||
                     isUploaded
                         ? `https://cdn.phormapp.com/${
-                                process
-                                    .env
-                                    .REACT_APP_ENV ===
+                                REACT_APP_ENV ===
                                 "development"
                                     ? "local-users"
                                     : "users"

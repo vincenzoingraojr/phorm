@@ -42,6 +42,6 @@ export class User extends BaseEntity {
     tokenVersion: number;
 
     @Field(() => [Chat], { nullable: true, defaultValue: [] })
-    @OneToMany(() => Chat, (chat) => chat.creator, { nullable: true })
+    @OneToMany(() => Chat, (chat) => chat.creator, { nullable: true, cascade: true })
     chats: Chat[];
 }

@@ -27,7 +27,7 @@ export class Chat extends BaseEntity {
     creatorId: number;
 
     @Field(() => User, { nullable: false })
-    @ManyToOne(() => User, (user) => user.chats, { nullable: false })
+    @ManyToOne(() => User, (user) => user.chats, { nullable: false, onDelete: "CASCADE" })
     creator: User;
 
     @Field(() => String, { nullable: false })
@@ -75,7 +75,7 @@ export class Message extends BaseEntity {
     isReplyTo: number;
 
     @Field(() => Chat)
-    @ManyToOne(() => Chat, (chat) => chat.messages)
+    @ManyToOne(() => Chat, (chat) => chat.messages, { onDelete: "CASCADE" })
     chat: Chat;
 
     @Field(() => String, { nullable: false })
@@ -119,7 +119,7 @@ export class Event extends BaseEntity {
     fromUser: boolean;
 
     @Field(() => Chat)
-    @ManyToOne(() => Chat, (chat) => chat.events)
+    @ManyToOne(() => Chat, (chat) => chat.events, { onDelete: "CASCADE" })
     chat: Chat;
     
     @Field(() => String, { nullable: false })
