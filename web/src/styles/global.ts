@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { devices } from "./devices";
+import { Link } from "react-router-dom";
 
 export const Button = styled.button`
     display: block;
@@ -21,6 +22,21 @@ export const SmallButton = styled(Button)`
     &:hover,
     &:focus {
         background-color: rgba(56, 53, 53, 0.6);
+    }
+`;
+
+export const LinkButton = styled(Link)`
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    background-color: inherit;
+    color: inherit;
+    font-weight: 700;
+
+    &:hover,
+    &:active {
+        text-decoration: none;
     }
 `;
 
@@ -134,8 +150,8 @@ export const ControlContainer = styled.div.attrs(
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    width: ${(props) => (props.size ? `${props.size}px` : `36px`)};
-    height: ${(props) => (props.size ? `${props.size}px` : `36px`)};
+    width: ${(props) => (props.size ? `${props.size}px` : `36px`)} !important;
+    height: ${(props) => (props.size ? `${props.size}px` : `36px`)} !important;
     border-radius: 9999px;
     background-color: transparent;
     transition: background-color ease 0.2s;

@@ -9,8 +9,8 @@ interface CloseProps {
 const CloseIcon = styled(SvgIcon).attrs(
     (props: { isNormal: boolean }) => props
 )`
-    width: ${(props) => (props.isNormal ? "22px" : "16px")};
-    height: ${(props) => (props.isNormal ? "22px" : "16px")};
+    width: ${(props) => (props.isNormal ? "24px" : "18px")};
+    height: ${(props) => (props.isNormal ? "24px" : "18px")};
     fill: none;
     stroke: #000000;
 `;
@@ -28,13 +28,7 @@ const Close: FunctionComponent<CloseProps> = ({ type }) => {
 
     return (
         <CloseIcon isNormal={isNormal}>
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M5 5L19 19M5 19L19 5"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                />
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" d="M368 368L144 144M368 144L144 368"/></svg>
         </CloseIcon>
     );
 };

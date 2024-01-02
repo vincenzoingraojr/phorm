@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "../icons/Logo";
 import styled from "styled-components";
 import { devices } from "../../styles/devices";
-import { ControlContainer } from "../../styles/global";
+import { ControlContainer, PageBlock, PageTextMT48 } from "../../styles/global";
 
 export interface AuthLayoutProps {
     content: JSX.Element;
@@ -81,6 +81,12 @@ const AuthPageContent = styled.div`
 const AuthLayout: FunctionComponent<AuthLayoutProps> = ({ content }) => {
     const navigate = useNavigate();
 
+    let showLoginOption = true;
+
+    if (window.location.pathname === "/login") {
+        showLoginOption = false;
+    }
+
     return (
         <AuthPage>
             <AuthPageHeader>
@@ -106,6 +112,31 @@ const AuthLayout: FunctionComponent<AuthLayoutProps> = ({ content }) => {
             </AuthPageHeader>
             <AuthPageContentContainer>
                 <AuthPageContent>{content}</AuthPageContent>
+                <PageTextMT48>
+                    {showLoginOption ? (
+                        <PageBlock>
+                            Already have an account?{" "}
+                            <Link
+                                to="/login"
+                                title="Log in"
+                                aria-label="Log in to Square"
+                            >
+                                Log in
+                            </Link>
+                        </PageBlock>
+                    ) : (
+                        <PageBlock>
+                            Forgot your password?{" "}
+                            <Link
+                                to="/recover-password"
+                                title="Recover your password"
+                                aria-label="Recover your password"
+                            >
+                                Recover it here
+                            </Link>
+                        </PageBlock>
+                    )}
+                </PageTextMT48>
             </AuthPageContentContainer>
         </AuthPage>
     );

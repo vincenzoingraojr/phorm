@@ -1,0 +1,39 @@
+query FindChat(
+    $chatId: String
+) {
+    findChat(chatId: $chatId) {
+        id
+        chatId
+        creatorId
+        creator {
+            id
+            firstName
+            lastName
+            email
+            emailVerified
+            profilePicture
+        }
+        title
+        createdAt
+        updatedAt
+        messagesCount
+        messages {
+            id
+            messageId
+            fromUser
+            isReplyTo
+            type
+            content
+            createdAt
+            updatedAt
+            isEdited
+        }
+        events {
+            id
+            eventType
+            eventMessage
+            fromUser
+            createdAt
+        }
+    }
+}

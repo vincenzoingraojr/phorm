@@ -21,7 +21,7 @@ const VerifyEmailAddressContainer = styled.div`
     padding-top: 12px;
     padding-left: 16px;
     padding-right: 16px;
-    padding-bottom: 36px;
+    padding-bottom: 16px;
 `;
 
 const VerifyEmailAddressButton = styled(Button)`

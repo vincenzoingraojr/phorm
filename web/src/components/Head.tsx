@@ -1,19 +1,26 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 
 interface HeadProps {
     title: string;
     description: string;
-    isLarge?: boolean;
-    image?: string;
+    noTop?: boolean;
 }
 
 const Head: FunctionComponent<HeadProps> = ({
     title,
     description,
-    isLarge,
-    image,
+    noTop,
 }) => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        if (!noTop) {
+            window.scrollTo(0, 0);
+        }
+    }, [pathname, noTop]);
+
     return (
         <Helmet>
             <title>{title}</title>
@@ -22,26 +29,6 @@ const Head: FunctionComponent<HeadProps> = ({
             <meta property="og:description" content={description} />
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={description} />
-            <meta
-                name="twitter:card"
-                content={isLarge ? "summary_large_image" : "summary"}
-            />
-            <meta
-                property="og:image"
-                content={
-                    image
-                        ? image
-                        : "https://cdn.phormapp.com/brand/logo.png"
-                }
-            />
-            <meta
-                property="twitter:image"
-                content={
-                    image
-                        ? image
-                        : "https://cdn.phormapp.com/brand/logo.png"
-                }
-            />
         </Helmet>
     );
 };
