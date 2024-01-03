@@ -1,4 +1,4 @@
-import { Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useLogoutMutation, useMeQuery } from "../../generated/graphql";
 import { textColorProp, theme } from "../../constants/theme";
 import { ScrollableLayout } from "../../components/ScrollableLayout";
@@ -86,25 +86,25 @@ const SettingsScreen = ({ navigation }: Props) => {
                             <Text style={[styles.text, settingsStyles.settingsBlockTitle]}>About</Text>
                             <View style={settingsStyles.settingsBlockContent}>
                                 <TouchableOpacity style={settingsStyles.settingsButton} onPress={() => { 
-                                    
+                                    Linking.openURL("https://help.phormapp.com");
                                 }}>
                                     <Ionicons name="help-circle-outline" size={28} color={textColor} />
                                     <Text style={styles.text}>Help center</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={settingsStyles.settingsButton} onPress={() => { 
-                                    
+                                    Linking.openURL("https://about.phormapp.com/tos");
                                 }}>
                                     <Ionicons name="document-text-outline" size={28} color={textColor} />
                                     <Text style={styles.text}>Terms of use</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={settingsStyles.settingsButton} onPress={() => { 
-                                    
+                                    Linking.openURL("https://about.phormapp.com/privacy-policy");
                                 }}>
                                     <Ionicons name="shield-outline" size={28} color={textColor} />
                                     <Text style={styles.text}>Privacy policy</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={settingsStyles.settingsButton} onPress={() => { 
-                                    
+                                    Linking.openURL("https://about.phormapp.com/licenses");
                                 }}>
                                     <Ionicons name="documents-outline" size={28} color={textColor} />
                                     <Text style={styles.text}>Licenses</Text>
