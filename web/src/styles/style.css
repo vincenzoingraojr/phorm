@@ -55,7 +55,7 @@ input::-ms-reveal {
     display: none;
 }
 
-input::placeholder {
+input::placeholder, textarea::placeholder {
     color: #000000;
     opacity: 1;
 }

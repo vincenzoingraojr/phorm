@@ -69,14 +69,19 @@ export const SvgIcon = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     fill: inherit;
     stroke: inherit;
 
     svg {
         width: inherit;
         height: inherit;
+        fill: inherit;
+        stroke: inherit;
+    }
+
+    svg path {
         fill: inherit;
         stroke: inherit;
     }
@@ -144,7 +149,7 @@ export const AuthButton = styled(Button)`
 `;
 
 export const ControlContainer = styled.div.attrs(
-    (props: { size?: number; isBackgroundGrey?: boolean }) => props
+    (props: { size?: number }) => props
 )`
     display: flex;
     align-items: center;
@@ -158,10 +163,7 @@ export const ControlContainer = styled.div.attrs(
 
     &:hover,
     &:focus {
-        background-color: ${(props) =>
-            props.isBackgroundGrey
-                ? "rgba(21, 20, 20, 0.6)"
-                : "rgba(36, 34, 34, 0.6)"};
+        background-color: rgba(36, 34, 34, 0.6);
     }
 `;
 
@@ -193,4 +195,36 @@ export const PageBaseContainer = styled.div`
 export const PageDescription = styled(PageText)`
     font-size: 20px;
     font-weight: 500;
+`;
+
+export const OptionItem = styled.div`
+    display: flex;
+    background-color: transparent;
+    color: #000000;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 12px 16px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    background-color: transparent;
+    transition: background-color ease 0.2s;
+
+    &:hover,
+    &:focus {
+        background-color: #aaa9a9;
+    }
+`;
+
+export const OptionItemIcon = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const OptionItemText = styled.div`
+    display: block;
+    font-weight: inherit;
 `;

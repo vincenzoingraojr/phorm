@@ -62,7 +62,7 @@ const SettingsScreen = ({ navigation }: Props) => {
                                 <TouchableOpacity style={settingsStyles.settingsButton} onPress={() => { 
                                     navigation.navigate("EditEmailAddress");
                                 }}>
-                                    <Ionicons name="at-sharp" size={28} color={textColor} />
+                                    <Ionicons name="at-outline" size={28} color={textColor} />
                                     <View style={settingsStyles.settingsButtonContent}>
                                         <Text style={styles.text}>Edit email address</Text>
                                         <Text style={[styles.text, settingsStyles.settingsButtonText]}>{data?.me?.email}</Text>

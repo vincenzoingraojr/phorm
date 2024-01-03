@@ -20,7 +20,28 @@ import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { createClient } from "graphql-ws";
 
-const cache = new InMemoryCache({});
+const cache = new InMemoryCache({
+    typePolicies: {
+        Query: {
+            fields: {
+                chats: {
+                    merge: (_existing = [], incoming) => {
+                        return incoming;
+                    },
+                },
+            },
+        },
+        User: {
+            fields: {
+                chats: {
+                    merge: (_existing = [], incoming) => {
+                        return incoming;
+                    },
+                },
+            },
+        },
+    },
+});
 
 const requestLink = new ApolloLink(
     (operation, forward) =>

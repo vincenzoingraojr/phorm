@@ -8,7 +8,7 @@ interface InputFieldProps {
     type: string;
     placeholder: string;
     value?: string;
-    errors: any;
+    errors?: any;
 }
 
 const InputFieldWrapper = styled.div`
@@ -115,7 +115,7 @@ const InputField: FunctionComponent<InputFieldProps> = ({
 
     return (
         <InputFieldWrapper>
-            {errors[field] ? (
+            {(errors && errors[field]) ? (
                 <InputFieldError>{errors[field]}</InputFieldError>
             ) : null}
             <InputFieldContainer

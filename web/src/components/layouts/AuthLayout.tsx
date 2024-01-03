@@ -106,7 +106,7 @@ const AuthLayout: FunctionComponent<AuthLayoutProps> = ({ content }) => {
                 </ControlContainer>
                 <AuthPageLogo>
                     <Link to="/" title="Phorm" aria-label="Phorm">
-                        <Logo type="inline" />
+                        <Logo type="default" />
                     </Link>
                 </AuthPageLogo>
             </AuthPageHeader>

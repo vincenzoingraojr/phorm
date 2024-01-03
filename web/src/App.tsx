@@ -13,6 +13,9 @@ import VerifyEmailAddress from "./pages/account/VerifyEmailAddress";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import RecoverPassword from "./pages/RecoverPassword";
+import ChatPage from "./pages/chat/ChatPage";
+import EditChatInfo from "./pages/chat/EditChatInfo";
+import AccountPage from "./pages/account/AccountPage";
 
 function App() {
     const [loading, setLoading] = useState(true);
@@ -123,6 +126,43 @@ function App() {
                         />
                     }
                 />
+                <Route
+                    path="/chat/:chatId"
+                    element={
+                        <IsAuthenticated
+                            isAuth={isAuth}
+                            children={<ChatPage />}
+                        />
+                    }
+                />
+                <Route
+                    path="/edit-chat/:chatId"
+                    element={
+                        <IsAuthenticated
+                            isAuth={isAuth}
+                            children={
+                                <Modal
+                                    headerText="Edit chat info"
+                                    modalContent={<EditChatInfo />}
+                                />
+                            }
+                        />
+                    }
+                />
+                <Route
+                    path="/account"
+                    element={
+                        <IsAuthenticated
+                            isAuth={isAuth}
+                            children={
+                                <Modal
+                                    headerText="Your account"
+                                    modalContent={<AccountPage />}
+                                />
+                            }
+                        />
+                    }
+                />
             </Routes>
             {state?.backgroundLocation && (
                 <Routes>
@@ -135,6 +175,34 @@ function App() {
                                     <Modal
                                         headerText="Verify your email address"
                                         modalContent={<VerifyEmailAddress />}
+                                    />
+                                }
+                            />
+                        }
+                    />
+                    <Route
+                        path="/edit-chat/:chatId"
+                        element={
+                            <IsAuthenticated
+                                isAuth={isAuth}
+                                children={
+                                    <Modal
+                                        headerText="Edit chat info"
+                                        modalContent={<EditChatInfo />}
+                                    />
+                                }
+                            />
+                        }
+                    />
+                    <Route
+                        path="/account"
+                        element={
+                            <IsAuthenticated
+                                isAuth={isAuth}
+                                children={
+                                    <Modal
+                                        headerText="Your account"
+                                        modalContent={<AccountPage />}
                                     />
                                 }
                             />

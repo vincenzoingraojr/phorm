@@ -31,7 +31,7 @@ const ModalOverlay = styled.div`
     right: 0;
     bottom: 0;
     z-index: 9999;
-    background-color: rgba(56, 53, 53, 0.6);
+    background-color: rgba(21, 20, 20, 0.6);
 `;
 
 const ModalOuterContainer = styled.div`
