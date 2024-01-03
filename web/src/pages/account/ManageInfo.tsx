@@ -204,8 +204,7 @@ function ManageInfo() {
                     </EditProfileImageContainer>
                     <Formik
                         initialValues={{
-                            profilePicture:
-                                        data?.me?.profilePicture || "",
+                            profilePicture: data?.me?.profilePicture || "",
                             lastName: data?.me?.lastName || "",
                             firstName: data?.me?.firstName || "",
                         }}

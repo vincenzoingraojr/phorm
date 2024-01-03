@@ -24,7 +24,6 @@ const AuthLinkButton = styled(LinkButton)`
     }
 `;
 
-
 function Authentication() {
     return (
         <>
