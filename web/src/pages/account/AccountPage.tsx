@@ -162,11 +162,11 @@ function AccountPage() {
                                     title="Manage account info"
                                     onClick={() => {
                                         navigate(
-                                            "/account/settings/manage-info",
+                                            "/settings/manage-info",
                                             {
                                                 state: {
                                                     backgroundLocation:
-                                                        location,
+                                                        location.state.backgroundLocation,
                                                 },
                                             }
                                         );  
@@ -185,11 +185,11 @@ function AccountPage() {
                                     title="Edit email address"
                                     onClick={() => {
                                         navigate(
-                                            "/account/settings/email",
+                                            "/settings/email",
                                             {
                                                 state: {
                                                     backgroundLocation:
-                                                        location,
+                                                        location.state.backgroundLocation,
                                                 },
                                             }
                                         ); 
@@ -209,11 +209,11 @@ function AccountPage() {
                                     title="Change your password"
                                     onClick={() => {
                                         navigate(
-                                            "/account/settings/password",
+                                            "/settings/password",
                                             {
                                                 state: {
                                                     backgroundLocation:
-                                                        location,
+                                                        location.state.backgroundLocation,
                                                 },
                                             }
                                         ); 
@@ -232,11 +232,11 @@ function AccountPage() {
                                     title="Delete your data"
                                     onClick={() => {
                                         navigate(
-                                            "/account/settings/delete-data",
+                                            "/settings/delete-data",
                                             {
                                                 state: {
                                                     backgroundLocation:
-                                                        location,
+                                                        location.state.backgroundLocation,
                                                 },
                                             }
                                         ); 

@@ -270,6 +270,14 @@ export type EditChatInfoMutationVariables = Exact<{
 
 export type EditChatInfoMutation = { __typename?: 'Mutation', editChatInfo: { __typename?: 'ChatResponse', status?: string | null | undefined, chat?: { __typename?: 'Chat', id: number, chatId: string, creatorId: number, title: string, createdAt: string, updatedAt: string, messagesCount?: number | null | undefined, creator: { __typename?: 'User', id: number, firstName: string, lastName: string, email: string, emailVerified: boolean, profilePicture?: string | null | undefined }, messages?: Array<{ __typename?: 'Message', id: number, messageId: string, fromUser: boolean, isReplyTo?: number | null | undefined, type: string, content?: string | null | undefined, createdAt: string, updatedAt: string, isEdited?: boolean | null | undefined }> | null | undefined, events?: Array<{ __typename?: 'Event', id: number, eventType: string, eventMessage: string, fromUser: boolean, createdAt: string }> | null | undefined } | null | undefined } };
 
+export type EditEmailAddressMutationVariables = Exact<{
+  email: Scalars['String'];
+  confirmEmail: Scalars['String'];
+}>;
+
+
+export type EditEmailAddressMutation = { __typename?: 'Mutation', editEmailAddress: { __typename?: 'UserResponse', status?: string | null | undefined, user?: { __typename?: 'User', id: number, firstName: string, lastName: string, email: string, emailVerified: boolean, profilePicture?: string | null | undefined } | null | undefined, errors?: Array<{ __typename?: 'FieldError', field?: string | null | undefined, message: string }> | null | undefined } };
+
 export type EditProfileMutationVariables = Exact<{
   firstName: Scalars['String'];
   lastName: Scalars['String'];
@@ -702,6 +710,52 @@ export function useEditChatInfoMutation(baseOptions?: Apollo.MutationHookOptions
 export type EditChatInfoMutationHookResult = ReturnType<typeof useEditChatInfoMutation>;
 export type EditChatInfoMutationResult = Apollo.MutationResult<EditChatInfoMutation>;
 export type EditChatInfoMutationOptions = Apollo.BaseMutationOptions<EditChatInfoMutation, EditChatInfoMutationVariables>;
+export const EditEmailAddressDocument = gql`
+    mutation EditEmailAddress($email: String!, $confirmEmail: String!) {
+  editEmailAddress(email: $email, confirmEmail: $confirmEmail) {
+    user {
+      id
+      firstName
+      lastName
+      email
+      emailVerified
+      profilePicture
+    }
+    errors {
+      field
+      message
+    }
+    status
+  }
+}
+    `;
+export type EditEmailAddressMutationFn = Apollo.MutationFunction<EditEmailAddressMutation, EditEmailAddressMutationVariables>;
+
+/**
+ * __useEditEmailAddressMutation__
+ *
+ * To run a mutation, you first call `useEditEmailAddressMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useEditEmailAddressMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [editEmailAddressMutation, { data, loading, error }] = useEditEmailAddressMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      confirmEmail: // value for 'confirmEmail'
+ *   },
+ * });
+ */
+export function useEditEmailAddressMutation(baseOptions?: Apollo.MutationHookOptions<EditEmailAddressMutation, EditEmailAddressMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<EditEmailAddressMutation, EditEmailAddressMutationVariables>(EditEmailAddressDocument, options);
+      }
+export type EditEmailAddressMutationHookResult = ReturnType<typeof useEditEmailAddressMutation>;
+export type EditEmailAddressMutationResult = Apollo.MutationResult<EditEmailAddressMutation>;
+export type EditEmailAddressMutationOptions = Apollo.BaseMutationOptions<EditEmailAddressMutation, EditEmailAddressMutationVariables>;
 export const EditProfileDocument = gql`
     mutation EditProfile($firstName: String!, $lastName: String!, $profilePicture: String!) {
   editProfile(

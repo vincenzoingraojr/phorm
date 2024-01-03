@@ -4,7 +4,7 @@ import styled from "styled-components";
 import MessageComposer from "../../components/input/MessageComposer";
 import { Form, Formik } from "formik";
 import { ChatsDocument, ChatsQuery, useChatsQuery, useDeleteChatMutation, useFindChatQuery, useMeQuery, useMessagesAndEventsQuery, useNewMessageOrEventSubscription, useSendMessageMutation } from "../../generated/graphql";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import LoadingComponent from "../../components/utils/LoadingComponent";
 import { MenuOptions } from "../../components/MenuOptions";
@@ -91,6 +91,15 @@ function ChatPage() {
     };
 
     const [deleteChat] = useDeleteChatMutation();
+
+    const mainComponentRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (mainComponentRef.current && currentChatData && currentChatData.findChat && !loading) {
+            mainComponentRef.current.scrollTop =
+                mainComponentRef.current.scrollHeight;
+        }
+    }, [currentChatData, loading, items.length]);
 
     return (
         <>
@@ -206,6 +215,7 @@ function ChatPage() {
                         }
                     />
                 }
+                componentRef={mainComponentRef}
             >
                 {(loading || error || !chatData) ? (
                     <LoadingComponent />

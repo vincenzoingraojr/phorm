@@ -16,6 +16,7 @@ interface ChatLayoutProps {
     children: ReactNode;
     composer: JSX.Element;
     headerRightComponent?: JSX.Element;
+    componentRef?: any;
 }
 
 const PageContainer = styled.div`
@@ -308,7 +309,7 @@ const MessageComposerContainer = styled.div`
     }
 `;
 
-const ChatLayout: FunctionComponent<ChatLayoutProps> = ({ children, composer, headerRightComponent }) => {
+const ChatLayout: FunctionComponent<ChatLayoutProps> = ({ children, composer, headerRightComponent, componentRef }) => {
     const [visible, setVisible] = useState(false);
     const { data } = useMeQuery({ fetchPolicy: "cache-and-network" });
 
@@ -328,6 +329,7 @@ const ChatLayout: FunctionComponent<ChatLayoutProps> = ({ children, composer, he
                             title="Search"
                             onClick={() => {
                                 navigate("/search");
+                                setVisible(false);
                             }}
                         >
                             <Search />
@@ -339,6 +341,7 @@ const ChatLayout: FunctionComponent<ChatLayoutProps> = ({ children, composer, he
                             title="New Chat"
                             onClick={() => {
                                 navigate("/home");
+                                setVisible(false);
                             }}
                         >
                             <NewChat />
@@ -352,6 +355,7 @@ const ChatLayout: FunctionComponent<ChatLayoutProps> = ({ children, composer, he
                             title="Collection"
                             onClick={() => {
                                 navigate("/collection");
+                                setVisible(false);
                             }}
                         >
                             <Book />
@@ -372,7 +376,16 @@ const ChatLayout: FunctionComponent<ChatLayoutProps> = ({ children, composer, he
                                 ) : (
                                     <ChatsFeed>
                                         {chatsData.chats.map((chat) => (
-                                            <ChatElement key={chat.id} role="link" title="Navigate to this chat" aria-label="Navigate to this chat" onClick={() => navigate(`/chat/${chat.chatId}`)}>
+                                            <ChatElement 
+                                                key={chat.id} 
+                                                role="link" 
+                                                title="Navigate to this chat" 
+                                                aria-label="Navigate to this chat" 
+                                                onClick={() => {
+                                                    navigate(`/chat/${chat.chatId}`);
+                                                    setVisible(false);
+                                                }}
+                                            >
                                                 {chat.title}
                                             </ChatElement>
                                         ))}
@@ -396,6 +409,7 @@ const ChatLayout: FunctionComponent<ChatLayoutProps> = ({ children, composer, he
                                 },
                             }
                         );
+                        setVisible(false);
                     }}
                 >
                     <UserProfile>
@@ -425,7 +439,7 @@ const ChatLayout: FunctionComponent<ChatLayoutProps> = ({ children, composer, he
                 <NavOverlay role="link" aria-label="Close nav" onClick={() => setVisible(false)} />
             )}
             <MainContainer>
-                <MainContentContainer>
+                <MainContentContainer ref={componentRef}>
                     <MainHeader>
                         <MainHeaderContainer>
                             <MainHeaderLeftContainer>

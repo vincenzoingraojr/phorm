@@ -16,6 +16,10 @@ import RecoverPassword from "./pages/RecoverPassword";
 import ChatPage from "./pages/chat/ChatPage";
 import EditChatInfo from "./pages/chat/EditChatInfo";
 import AccountPage from "./pages/account/AccountPage";
+import ManageInfo from "./pages/account/ManageInfo";
+import EditEmailAddress from "./pages/account/EditEmailAddress";
+import ChangePassword from "./pages/account/ChangePassword";
+import DeleteData from "./pages/account/DeleteData";
 
 function App() {
     const [loading, setLoading] = useState(true);
@@ -163,6 +167,62 @@ function App() {
                         />
                     }
                 />
+                <Route
+                    path="/settings/manage-info"
+                    element={
+                        <IsAuthenticated
+                            isAuth={isAuth}
+                            children={
+                                <Modal
+                                    headerText="Manage your account info"
+                                    modalContent={<ManageInfo />}
+                                />
+                            }
+                        />
+                    }
+                />
+                <Route
+                    path="/settings/email"
+                    element={
+                        <IsAuthenticated
+                            isAuth={isAuth}
+                            children={
+                                <Modal
+                                    headerText="Edit email address"
+                                    modalContent={<EditEmailAddress />}
+                                />
+                            }
+                        />
+                    }
+                />
+                <Route
+                    path="/settings/password"
+                    element={
+                        <IsAuthenticated
+                            isAuth={isAuth}
+                            children={
+                                <Modal
+                                    headerText="Change your password"
+                                    modalContent={<ChangePassword />}
+                                />
+                            }
+                        />
+                    }
+                />
+                <Route
+                    path="/settings/delete-data"
+                    element={
+                        <IsAuthenticated
+                            isAuth={isAuth}
+                            children={
+                                <Modal
+                                    headerText="Delete your account"
+                                    modalContent={<DeleteData />}
+                                />
+                            }
+                        />
+                    }
+                />
             </Routes>
             {state?.backgroundLocation && (
                 <Routes>
@@ -203,6 +263,62 @@ function App() {
                                     <Modal
                                         headerText="Your account"
                                         modalContent={<AccountPage />}
+                                    />
+                                }
+                            />
+                        }
+                    />
+                    <Route
+                        path="/settings/manage-info"
+                        element={
+                            <IsAuthenticated
+                                isAuth={isAuth}
+                                children={
+                                    <Modal
+                                        headerText="Manage your account info"
+                                        modalContent={<ManageInfo />}
+                                    />
+                                }
+                            />
+                        }
+                    />
+                    <Route
+                        path="/settings/email"
+                        element={
+                            <IsAuthenticated
+                                isAuth={isAuth}
+                                children={
+                                    <Modal
+                                        headerText="Edit email address"
+                                        modalContent={<EditEmailAddress />}
+                                    />
+                                }
+                            />
+                        }
+                    />
+                    <Route
+                        path="/settings/password"
+                        element={
+                            <IsAuthenticated
+                                isAuth={isAuth}
+                                children={
+                                    <Modal
+                                        headerText="Change your password"
+                                        modalContent={<ChangePassword />}
+                                    />
+                                }
+                            />
+                        }
+                    />
+                    <Route
+                        path="/settings/delete-data"
+                        element={
+                            <IsAuthenticated
+                                isAuth={isAuth}
+                                children={
+                                    <Modal
+                                        headerText="Delete your account"
+                                        modalContent={<DeleteData />}
                                     />
                                 }
                             />

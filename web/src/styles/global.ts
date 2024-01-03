@@ -228,3 +228,20 @@ export const OptionItemText = styled.div`
     display: block;
     font-weight: inherit;
 `;
+
+export const ImageButtonContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    background-color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    transition: background-color ease 0.2s;
+
+    &:hover,
+    &:focus {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+`;
