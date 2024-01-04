@@ -10,6 +10,7 @@ An app that explains the procedures leading to the resolution of mathematical an
 | [web](./web/)             | React.js app       |
 | [app](./app/)             | React Native app   |
 | [server](./server/)       | Express server     |
+| [about](./about/)         | About website      |
 
 ## What is Phorm?
 
