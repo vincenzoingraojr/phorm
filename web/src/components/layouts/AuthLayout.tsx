@@ -119,7 +119,7 @@ const AuthLayout: FunctionComponent<AuthLayoutProps> = ({ content }) => {
                             <Link
                                 to="/login"
                                 title="Log in"
-                                aria-label="Log in to Square"
+                                aria-label="Log in to Phorm"
                             >
                                 Log in
                             </Link>
