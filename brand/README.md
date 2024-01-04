@@ -9,6 +9,6 @@ I use [Inter](https://rsms.me/inter) as font.
 
 ## Trademark and other things to know
 
-As you can see in the [license](./LICENSE), "Phorm" is a trademark of Vincenzo Ingrao Jr.
+As you can see in the [license](../LICENSE), "Phorm" is a trademark of Vincenzo Ingrao Jr.
 
 To quote the company name, capitalize the "P" in "Phorm" in all copy text.

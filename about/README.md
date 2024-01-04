@@ -1,6 +1,6 @@
 # Phorm | About website
 
-This website is a React.js web application. It uses React.js to build the pages. It is written in TypeScript, and I use `styled-components` to style the web app. I use Figma to create the SVG icons.
+This website is a React.js web application. It uses React.js to build the pages. It is written in TypeScript, and I use `styled-components` to style the web app.
 
 ## How to start the local front-end development
 
