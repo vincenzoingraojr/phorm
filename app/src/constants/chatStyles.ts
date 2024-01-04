@@ -13,7 +13,6 @@ export const chatStyles = StyleSheet.create({
     },
     feed: {
         flexDirection: "column",
-        gap: 18,
     },
     compose: {
         padding: 16,

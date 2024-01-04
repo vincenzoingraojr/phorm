@@ -16,6 +16,7 @@ const AuthStack = () => {
                 headerShown: false,
                 headerStyle: { backgroundColor: styles.header.backgroundColor },
                 headerTintColor: styles.text.color,
+                headerShadowVisible: false,
                 headerTitleStyle: { fontFamily: styles.header.fontFamily, fontSize: styles.header.fontSize },
                 animation: "simple_push",
             }}

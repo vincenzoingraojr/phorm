@@ -54,7 +54,6 @@ const messageStyles = StyleSheet.create({
     },
     authorName: {
         fontFamily: "Inter_700Bold",
-        fontWeight: "700",
         fontSize: 16,
     },
     authorProfileImage: {

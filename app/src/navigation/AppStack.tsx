@@ -22,10 +22,11 @@ const HomeStack = () => {
             initialRouteName="NewChat"
             screenOptions={{
                 drawerType: "slide",
-                headerStyle: { backgroundColor: styles.header.backgroundColor },
                 headerTintColor: styles.text.color,
+                headerStyle: { backgroundColor: styles.header.backgroundColor },
                 headerShadowVisible: false,
                 headerTitleStyle: { fontFamily: styles.header.fontFamily, fontSize: styles.header.fontSize },
+                title: "Phorm",
             }}
             backBehavior="history"
             drawerContent={(props) => <DrawerContent {...props} />}
@@ -33,16 +34,10 @@ const HomeStack = () => {
             <Drawer.Screen 
                 name="NewChat" 
                 component={NewChatScreen}
-                options={{
-                    title: "Phorm",
-                }}
             />
             <Drawer.Screen 
                 name="Chat" 
                 component={ChatScreen}
-                options={{
-                    title: "Phorm",
-                }}
                 initialParams={{ chatId: undefined }}
             />
         </Drawer.Navigator>
@@ -58,6 +53,7 @@ const AppStack = () => {
                 headerShown: false,
                 headerStyle: { backgroundColor: styles.header.backgroundColor },
                 headerTintColor: styles.text.color,
+                headerShadowVisible: false,
                 headerTitleStyle: { fontFamily: styles.header.fontFamily, fontSize: styles.header.fontSize },
                 animation: "simple_push",
             }}
