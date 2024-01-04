@@ -88,7 +88,7 @@ const ActionButton = styled.div`
     cursor: pointer;
 
     &:hover, &:focus {
-        background-color: #aaa9a9;
+        background-color: #b5adad;
     }
 `;
 

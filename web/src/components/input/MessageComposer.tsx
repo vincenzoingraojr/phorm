@@ -24,7 +24,7 @@ const TextInputContainer = styled.div`
     padding: 12px;
     border-radius: 16px;
     height: auto;
-    background-color: #aaa9a9;
+    background-color: #b5adad;
     width: calc(100% - 64px);
 `;
 

@@ -57,7 +57,7 @@ const EmailActionsContainer = styled.div`
     gap: 8px;
     padding: 16px;
     border-radius: 16px;
-    background-color: #aaa9a9;
+    background-color: #b5adad;
 `;
 
 const EmailActionsTitle = styled(PageText)`

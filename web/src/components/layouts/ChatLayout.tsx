@@ -102,7 +102,7 @@ const UserBox = styled.div`
     width: 100%;
 
     &:hover, &:focus {
-        background-color: rgba(36, 34, 34, 0.6);
+        background-color: rgba(56, 53, 53, 0.6);
     }
 `;
 
@@ -211,12 +211,12 @@ const NavButton = styled.div`
     cursor: pointer;
 
     &:hover, &:focus {
-        background-color: #aaa9a9;
+        background-color: #b5adad;
     }
 `;
 
 const SearchButton = styled(NavButton)`
-    background-color: #aaa9a9;
+    background-color: #b5adad;
 
     &:hover, &:focus {
         background-color: rgba(56, 53, 53, 0.6);
@@ -284,7 +284,7 @@ const ChatElement = styled.div`
     cursor: pointer;
 
     &:hover, &:focus {
-        background-color: rgba(36, 34, 34, 0.6);
+        background-color: rgba(56, 53, 53, 0.6);
     }
 `;
 

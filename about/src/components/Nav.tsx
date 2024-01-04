@@ -375,7 +375,7 @@ function Nav() {
                         </MobileMenuHeader>
                         <div ref={ref1}>
                             <DropDown
-                                title="About Phorm"
+                                title="About the project"
                                 isOpen={activeDropDown === 0}
                                 toggleDropDown={() => handleDropDownClick(0)}
                                 children={

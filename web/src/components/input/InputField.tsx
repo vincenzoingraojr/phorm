@@ -26,7 +26,7 @@ const InputFieldError = styled.div`
 const InputFieldContainer = styled.div`
     display: block;
     position: relative;
-    background-color: #aaa9a9;
+    background-color: #b5adad;
     min-height: 60px;
     padding-left: 12px;
     padding-right: 12px;
@@ -78,7 +78,7 @@ const ShowPassword = styled.div`
     &:hover,
     &:focus {
         border-radius: 9999px;
-        background-color: rgba(36, 34, 34, 0.6);
+        background-color: rgba(56, 53, 53, 0.6);
     }
 `;
 

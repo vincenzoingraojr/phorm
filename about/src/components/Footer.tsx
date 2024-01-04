@@ -5,8 +5,8 @@ import { PageText } from "../styles/global";
 
 const FooterContainer = styled.footer`
     display: flex;
-    background-color: #383535;
-    color: #B5ADAD;
+    background-color: #242424;
+    color: #b5adad;
     font-size: 14px;
     align-items: center;
     justify-content: center;
@@ -72,7 +72,7 @@ const FooterItemContent = styled.div`
     gap: 12px;
 
     div a {
-        color: #B5ADAD;
+        color: #b5adad;
     }
 `;
 
@@ -87,7 +87,7 @@ const FooterRow = styled.div`
     row-gap: 4px;
 
     div a {
-        color: #B5ADAD;
+        color: #b5adad;
     }
 `;
 
@@ -97,7 +97,7 @@ function Footer() {
             <FooterInnerContainer>
                 <FooterGrid>
                     <FooterItem>
-                        <FooterTitle>About Phorm</FooterTitle>
+                        <FooterTitle>About the project</FooterTitle>
                         <FooterItemContent>
                             <PageText>
                                 <Link to="/about-us" title="About us" aria-label="About us">About us</Link>
