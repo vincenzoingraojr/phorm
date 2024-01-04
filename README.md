@@ -13,4 +13,4 @@ An app that explains the procedures leading to the resolution of mathematical an
 
 ## What is Phorm?
 
-Phorm is a cross-platform platform that aims to privide AI-driven solutions for scientific problem-solving, thus empowering students and researchers, and making science accessible to everyone.
+Phorm is a cross-platform app that aims to privide AI-driven solutions for scientific problem-solving, thus empowering students and researchers, and making science accessible to everyone.
