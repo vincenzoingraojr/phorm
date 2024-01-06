@@ -452,11 +452,14 @@ function Nav() {
                                     <>
                                         <NavEntry>
                                             <a
+                                                title="Help center"
                                                 href="https://help.phormapp.com"
                                                 target="_blank"
-                                                title="Help center"
                                                 aria-label="Help center"
                                                 rel="noreferrer noopener"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                }}
                                             >
                                                 Help center
                                             </a>

@@ -16,7 +16,7 @@ function CookiePolicy() {
                                 Read how cookies are used on Phorm.
                             </PageDescription>
                             <PageText>
-                                The platform is not yet online, and this applies to the mobile and desktop applications too. The entire project is in an early development stage, so we don't know how many cookies the final version of the platform will use. For this reason, we don't have yet a cookie policy to display here.
+                                The web platform is not yet online, and this applies to the mobile applications too. The entire project is in an early development stage, so we don't know how many cookies the final version of the platform will use. For this reason, we don't yet have a cookie policy to display here.
                             </PageText>
                             <PageText>
                                 <PageSmallTitle>

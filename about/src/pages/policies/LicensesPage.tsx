@@ -13,10 +13,10 @@ function LicensesPage() {
                         <PageBaseContainer>
                             <PageTitle>Licenses</PageTitle>
                             <PageDescription>
-                                Read more about the licenses of the technologies used in Phorm.
+                                Read more about the licenses for the technologies used in Phorm.
                             </PageDescription>
                             <PageText>
-                                Licenses
+                                We'll upload the licenses for the technologies used in Phorm once all the apps are online. 
                             </PageText>
                         </PageBaseContainer>
                     }  

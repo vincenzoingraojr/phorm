@@ -4,7 +4,7 @@ import { PageLayout } from "../components/PageLayout";
 import { SEO } from "../components/Seo";
 import styled from "styled-components";
 import { devices } from "../styles/devices";
-import { LinkButton, PageBlock } from "../styles/global";
+import { LinkButton, PageBlock, PageText } from "../styles/global";
 
 const IndexPageContainer = styled.div`
     display: flex;
@@ -79,6 +79,9 @@ function IndexPage() {
                         <IndexTitle>
                             Phorm
                         </IndexTitle>
+                        <PageText>
+                            AI-driven solutions for scientific problem-solving, empowering students and researchers, and making science accessible to everyone.
+                        </PageText>
                         <PageBlock>
                             <IndexLinkButton
                                 title="Coming soon"

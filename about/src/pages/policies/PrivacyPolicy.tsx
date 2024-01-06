@@ -16,7 +16,7 @@ function PrivacyPolicy() {
                                 Read more about how your privacy is important for us.
                             </PageDescription>
                             <PageText>
-                                The platform is not yet online, and this applies to the mobile and desktop applications too. The entire project is in an early development stage, so we don't have yet a privacy policy to display here.
+                                The web platform is not yet online, and this applies to the mobile applications too. The entire project is in an early development stage, so we don't yet have a privacy policy to display here.
                             </PageText>
                             <PageText>
                                 <PageSmallTitle>

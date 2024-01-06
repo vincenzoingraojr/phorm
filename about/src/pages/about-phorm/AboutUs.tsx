@@ -16,7 +16,7 @@ function AboutUs() {
                                 Discover more about the project and the products we're building.
                             </PageDescription>
                             <PageText>
-                                Phorm.
+                                We're building Phorm, an app that explains the procedures leading to the resolution of mathematical and physical problems.
                             </PageText>
                         </PageBaseContainer>
                     }  

@@ -58,7 +58,7 @@ function App() {
                     }
                 />
                 <Route
-                    path="/privacy"
+                    path="/privacy-policy"
                     element={
                         <PrivacyPolicy />
                     }

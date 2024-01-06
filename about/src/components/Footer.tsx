@@ -121,9 +121,9 @@ function Footer() {
                     <FooterItem>
                         <FooterTitle>Resources</FooterTitle>
                         <FooterItemContent>
-                            <PageText>
+                            {/*<PageText>
                                 <Link to="https://help.phormapp.com" target="_blank" title="Help center" aria-label="Help center">Help center</Link>
-                            </PageText>
+                            </PageText>*/}
                             <PageText>
                                 <Link to="/contact-us" title="Contact us" aria-label="Contact us">Contact us</Link>
                             </PageText>
@@ -135,9 +135,9 @@ function Footer() {
                         <PageText>
                             &copy; {new Date().getFullYear()} Phorm
                         </PageText>
-                        <PageText>
+                        {/*<PageText>
                             <a href="https://phormapp.com" target="_blank" rel="noreferrer noopener" title="Phorm on web" aria-label="Phorm on web">phormapp.com</a>
-                        </PageText>
+                        </PageText>*/}
                         <PageText>
                             <Link to="/cookies" title="Cookie policy" aria-label="Cookie policy">Cookies</Link>
                         </PageText>

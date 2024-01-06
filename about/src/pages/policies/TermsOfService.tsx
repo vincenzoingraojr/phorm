@@ -16,7 +16,7 @@ function TermsOfService() {
                                 Phorm terms of service.
                             </PageDescription>
                             <PageText>
-                                The platform is not yet online, and this applies to the mobile and desktop applications too. The entire project is in an early development stage, when we will release the first version of the web application we will also create the terms of service of the platform.
+                                The web platform is not yet online, and this applies to the mobile applications too. The entire project is in an early development stage, when we will release all the apps we will also create the terms of service of the platform.
                             </PageText>
                         </PageBaseContainer>
                     }  
