@@ -328,7 +328,15 @@ const ChatLayout: FunctionComponent<ChatLayoutProps> = ({ children, composer, he
                             aria-label="Search"
                             title="Search"
                             onClick={() => {
-                                navigate("/search");
+                                navigate(
+                                    "/search",
+                                    {
+                                        state: {
+                                            backgroundLocation:
+                                                location,
+                                        },
+                                    }
+                                );
                                 setVisible(false);
                             }}
                         >

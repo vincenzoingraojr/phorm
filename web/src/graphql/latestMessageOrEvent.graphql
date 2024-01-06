@@ -1,0 +1,26 @@
+query LatestMessageOrEvent(
+    $chatId: String
+) {
+    latestMessageOrEvent(
+        chatId: $chatId
+    ) {
+        ... on Message {
+            id
+            messageId
+            fromUser
+            isReplyTo
+            type
+            content
+            createdAt
+            updatedAt
+            isEdited
+        }
+        ... on Event {
+            id
+            eventType
+            eventMessage
+            fromUser
+            createdAt
+        }
+    }
+}

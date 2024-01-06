@@ -294,6 +294,13 @@ export type FindChatQueryVariables = Exact<{
 
 export type FindChatQuery = { __typename?: 'Query', findChat?: { __typename?: 'Chat', id: number, chatId: string, creatorId: number, title: string, createdAt: string, updatedAt: string, messagesCount?: number | null | undefined, creator: { __typename?: 'User', id: number, firstName: string, lastName: string, email: string, emailVerified: boolean, profilePicture?: string | null | undefined }, messages?: Array<{ __typename?: 'Message', id: number, messageId: string, fromUser: boolean, isReplyTo?: number | null | undefined, type: string, content?: string | null | undefined, createdAt: string, updatedAt: string, isEdited?: boolean | null | undefined }> | null | undefined, events?: Array<{ __typename?: 'Event', id: number, eventType: string, eventMessage: string, fromUser: boolean, createdAt: string }> | null | undefined } | null | undefined };
 
+export type LatestMessageOrEventQueryVariables = Exact<{
+  chatId?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type LatestMessageOrEventQuery = { __typename?: 'Query', latestMessageOrEvent?: { __typename?: 'Event', id: number, eventType: string, eventMessage: string, fromUser: boolean, createdAt: string } | { __typename?: 'Message', id: number, messageId: string, fromUser: boolean, isReplyTo?: number | null | undefined, type: string, content?: string | null | undefined, createdAt: string, updatedAt: string, isEdited?: boolean | null | undefined } | null | undefined };
+
 export type LoginMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
@@ -874,6 +881,58 @@ export function useFindChatLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<F
 export type FindChatQueryHookResult = ReturnType<typeof useFindChatQuery>;
 export type FindChatLazyQueryHookResult = ReturnType<typeof useFindChatLazyQuery>;
 export type FindChatQueryResult = Apollo.QueryResult<FindChatQuery, FindChatQueryVariables>;
+export const LatestMessageOrEventDocument = gql`
+    query LatestMessageOrEvent($chatId: String) {
+  latestMessageOrEvent(chatId: $chatId) {
+    ... on Message {
+      id
+      messageId
+      fromUser
+      isReplyTo
+      type
+      content
+      createdAt
+      updatedAt
+      isEdited
+    }
+    ... on Event {
+      id
+      eventType
+      eventMessage
+      fromUser
+      createdAt
+    }
+  }
+}
+    `;
+
+/**
+ * __useLatestMessageOrEventQuery__
+ *
+ * To run a query within a React component, call `useLatestMessageOrEventQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLatestMessageOrEventQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLatestMessageOrEventQuery({
+ *   variables: {
+ *      chatId: // value for 'chatId'
+ *   },
+ * });
+ */
+export function useLatestMessageOrEventQuery(baseOptions?: Apollo.QueryHookOptions<LatestMessageOrEventQuery, LatestMessageOrEventQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LatestMessageOrEventQuery, LatestMessageOrEventQueryVariables>(LatestMessageOrEventDocument, options);
+      }
+export function useLatestMessageOrEventLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LatestMessageOrEventQuery, LatestMessageOrEventQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LatestMessageOrEventQuery, LatestMessageOrEventQueryVariables>(LatestMessageOrEventDocument, options);
+        }
+export type LatestMessageOrEventQueryHookResult = ReturnType<typeof useLatestMessageOrEventQuery>;
+export type LatestMessageOrEventLazyQueryHookResult = ReturnType<typeof useLatestMessageOrEventLazyQuery>;
+export type LatestMessageOrEventQueryResult = Apollo.QueryResult<LatestMessageOrEventQuery, LatestMessageOrEventQueryVariables>;
 export const LoginDocument = gql`
     mutation Login($email: String!, $password: String!) {
   login(email: $email, password: $password) {

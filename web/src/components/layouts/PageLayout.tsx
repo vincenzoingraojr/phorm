@@ -119,6 +119,15 @@ export const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
                 <FooterItem>
                     &copy; {new Date().getFullYear()} Phorm
                 </FooterItem>
+                <FooterItem>
+                    <a href="https://about.phormapp.com" target="_blank" rel="noreferrer noopener" title="About Phorm" aria-label="About Phorm">About</a>
+                </FooterItem>
+                <FooterItem>
+                    <a href="https://about.phormapp.com/tos" target="_blank" rel="noreferrer noopener" title="Terms of use" aria-label="Terms of use">Terms of use</a>
+                </FooterItem>
+                <FooterItem>
+                    <a href="https://about.phormapp.com/privacy-policy" target="_blank" rel="noreferrer noopener" title="Privacy policy" aria-label="Privacy policy">Privacy policy</a>
+                </FooterItem>
             </Footer>
         </PageLayoutContainer>
     );

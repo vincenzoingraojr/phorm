@@ -20,6 +20,7 @@ import ManageInfo from "./pages/account/ManageInfo";
 import EditEmailAddress from "./pages/account/EditEmailAddress";
 import ChangePassword from "./pages/account/ChangePassword";
 import DeleteData from "./pages/account/DeleteData";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
     const [loading, setLoading] = useState(true);
@@ -223,6 +224,20 @@ function App() {
                         />
                     }
                 />
+                <Route
+                    path="/search"
+                    element={
+                        <IsAuthenticated
+                            isAuth={isAuth}
+                            children={
+                                <Modal
+                                    headerText="Search"
+                                    modalContent={<SearchPage />}
+                                />
+                            }
+                        />
+                    }
+                />
             </Routes>
             {state?.backgroundLocation && (
                 <Routes>
@@ -319,6 +334,20 @@ function App() {
                                     <Modal
                                         headerText="Delete your account"
                                         modalContent={<DeleteData />}
+                                    />
+                                }
+                            />
+                        }
+                    />
+                    <Route
+                        path="/search"
+                        element={
+                            <IsAuthenticated
+                                isAuth={isAuth}
+                                children={
+                                    <Modal
+                                        headerText="Search"
+                                        modalContent={<SearchPage />}
                                     />
                                 }
                             />
