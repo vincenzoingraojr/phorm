@@ -195,7 +195,7 @@ const ChatScreen = () => {
                                     : i.toString()
                             }
                             style={[chatStyles.main, chatStyles.feed]}
-                            contentContainerStyle={{ paddingTop: 16, paddingBottom: 8 }}
+                            contentContainerStyle={{ paddingTop: 16 }}
                             ItemSeparatorComponent={() => <RenderSeparator height={20} />}
                             onContentSizeChange={() => {
                                 flatListRef?.current?.scrollToEnd({ animated: true });

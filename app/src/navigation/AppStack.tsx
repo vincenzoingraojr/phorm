@@ -10,6 +10,7 @@ import ManageAccountInfoScreen from "../screens/settings/ManageAccountInfoScreen
 import EditEmailAddressScreen from "../screens/settings/EditEmailAddressScreen";
 import ChangePasswordScreen from "../screens/settings/ChangePasswordScreen";
 import DeleteDataScreen from "../screens/settings/DeleteData";
+import SearchScreen from "../screens/SearchScreen";
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -111,6 +112,14 @@ const AppStack = () => {
                 options={{
                     headerShown: true,
                     title: "Delete your data",
+                }}
+            />
+            <Stack.Screen 
+                name="Search"
+                component={SearchScreen} 
+                options={{
+                    headerShown: true,
+                    title: "Search",
                 }}
             />
         </Stack.Navigator>

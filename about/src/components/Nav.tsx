@@ -450,7 +450,7 @@ function Nav() {
                                 toggleDropDown={() => handleDropDownClick(2)}
                                 children={
                                     <>
-                                        <NavEntry>
+                                        {/*<NavEntry>
                                             <a
                                                 title="Help center"
                                                 href="https://help.phormapp.com"
@@ -463,7 +463,7 @@ function Nav() {
                                             >
                                                 Help center
                                             </a>
-                                        </NavEntry>
+                                        </NavEntry>*/}
                                         <NavEntry>
                                             <NavLink
                                                 to="/contact-us"

@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react";
-import { KeyboardTypeOptions, StyleSheet, Text, TextInput, View } from "react-native";
+import { KeyboardTypeOptions, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { textColorProp, theme } from "../../constants/theme";
 import { COLORS } from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
@@ -51,9 +51,9 @@ const Input: FunctionComponent<InputProps> = ({
                     />
                 </View>
                 {type === "password" && (
-                    <View style={inputStyles.visibilityBox}>
-                        <Ionicons name={secure ? "eye-outline" : "eye-off-outline"} size={24} color={COLORS.orange} onPress={() => setSecure(!secure)} />
-                    </View>
+                    <Pressable style={inputStyles.visibilityBox} onPress={() => setSecure(!secure)}>
+                        <Ionicons name={secure ? "eye-outline" : "eye-off-outline"} size={24} color={COLORS.orange} />
+                    </Pressable>
                 )}
             </View>
         </View>
