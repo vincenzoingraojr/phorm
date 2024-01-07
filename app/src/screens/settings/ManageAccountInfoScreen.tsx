@@ -15,6 +15,8 @@ import { REACT_APP_ENV, REACT_APP_SERVER_ORIGIN, REACT_APP_STORAGE_LINK } from "
 import { toastProps } from "../../constants/toast";
 import Toast from "react-native-root-toast";
 import { toErrorMap } from "../../utils/toErrorMap";
+import * as FileSystem from "expo-file-system";
+import { Buffer } from "buffer";
 
 const ManageAccountInfoScreen = () => {
     const { data } = useMeQuery({ fetchPolicy: "cache-and-network" });
@@ -22,7 +24,7 @@ const ManageAccountInfoScreen = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [errors, setErrors] = useState<Record<string, string>>({});
-    const [image, setImage] = useState<ImagePicker.ImagePickerAsset | null>(null);
+    const [image, setImage] = useState<Buffer | null>(null);
     const [deleteImage, setDeleteImage] = useState(false);
 
     const [imageUrl, setImageUrl] = useState<string>(require("../../images/profile-picture.png"));
@@ -44,14 +46,19 @@ const ManageAccountInfoScreen = () => {
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
             aspect: [1, 1],
             quality: 1,
         });
 
         if (!result.canceled) {
-            setImage(result.assets[0]);
+            const base64 = await FileSystem.readAsStringAsync(result.assets[0].uri, {
+                encoding: FileSystem.EncodingType.Base64
+            });
+            const buffer = Buffer.from(base64, "base64");
+
+            setImage(buffer);
             setImageUrl(result.assets[0].uri);
         } else {
             setImage(null);
