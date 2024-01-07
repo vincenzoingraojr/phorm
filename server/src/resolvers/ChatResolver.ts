@@ -5,6 +5,7 @@ import { isAuth } from "../middleware/isAuth";
 import { MyContext } from "../types";
 import { v4 as uuidv4 } from "uuid";
 import { User } from "../entities/User";
+import { createResponseMessage } from "../helpers/createResponseMessage";
 
 @ObjectType()
 export class ChatResponse {
@@ -287,22 +288,15 @@ export class MessageResolver {
                 await chat.save();
                 
                 await pubSub.publish("NEW_MESSAGE_OR_EVENT", message);
-                
-                const response = await Message.create({
-                    messageId: uuidv4(),
-                    fromUser: false,
-                    isReplyTo: message.id,
-                    chat: await Chat.findOne({ where: { chatId } }),
-                    type: "default",
-                    content: "Response: " + message.content,
-                }).save();
+
+                const response = await createResponseMessage(chatId, message);
 
                 if (response) {
                     chat.messages.push(response);
                     chat.messagesCount++;
-
+            
                     await chat.save();
-
+            
                     await pubSub.publish("NEW_MESSAGE_OR_EVENT", response);
                 }
 
